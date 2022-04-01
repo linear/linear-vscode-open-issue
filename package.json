@@ -1,0 +1,66 @@
+{
+  "name": "linear-open-issue",
+  "displayName": "Linear Open Issue",
+  "description": "Open the Linear issue that is currently being worked on based on the VCS branch name.",
+  "publisher": "Linear",
+  "author": "Linear Orbit, Inc",
+  "license": "MIT",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linear/linear-vscode-open-issue"
+  },
+  "engines": {
+    "vscode": "^1.65.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:linear-open-issue.openIssue"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "main": "./dist/main.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "linear-open-issue.openIssue",
+        "title": "Open Linear issue"
+      }
+    ],
+    "configuration": {
+      "title": "Open issue in Linear",
+      "properties": {
+        "openInDesktopApp": {
+          "type": "boolean",
+          "description": "Open Linear issue in the desktop app"
+        }
+      }
+    }
+  },
+  "extensionDependencies": [
+    "linear.linear-connect"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "14.x",
+    "@types/vscode": "^1.65.0",
+    "esbuild": "^0.14.29",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@linear/sdk": "^1.22.0"
+  }
+}
