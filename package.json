@@ -2,10 +2,11 @@
   "name": "linear-open-issue",
   "displayName": "Linear Open Issue",
   "description": "Open the Linear issue that is currently being worked on based on the VCS branch name.",
-  "publisher": "Linear",
+  "publisher": "linear",
   "author": "Linear Orbit, Inc",
   "license": "MIT",
   "version": "1.0.0",
+  "icon": "assets/128x128.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/linear/linear-vscode-open-issue"
@@ -30,7 +31,7 @@
     "commands": [
       {
         "command": "linear-open-issue.openIssue",
-        "title": "Open Linear issue"
+        "title": "Linear: Open issue"
       }
     ],
     "configuration": {

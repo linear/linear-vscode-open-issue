@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
                 urlKey: string;
               };
             };
-          };
+          } | null;
         } | null = await linearClient.client.request(`query {
             issueVcsBranchSearch(branchName: "${branchName}") {
               identifier
@@ -57,14 +57,15 @@ export function activate(context: vscode.ExtensionContext) {
             }
           }`);
 
-        // Preference to open the issue in the desktop app or in the browser.
-        const urlPrefix = vscode.workspace
-          .getConfiguration()
-          .get<boolean>("openInDesktopApp")
-          ? "linear://"
-          : "https://linear.app/";
+        if (request?.issueVcsBranchSearch?.identifier) {
+          // Preference to open the issue in the desktop app or in the browser.
+          const urlPrefix = vscode.workspace
+            .getConfiguration()
+            .get<boolean>("openInDesktopApp")
+            ? "linear://"
+            : "https://linear.app/";
 
-        if (request?.issueVcsBranchSearch.identifier) {
+          // Open the URL.
           vscode.env.openExternal(
             vscode.Uri.parse(
               urlPrefix +
@@ -75,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
           );
         } else {
           vscode.window.showInformationMessage(
-            `No Linear issue could be found matching the branch name ${branchName} in the current authenticated workspace.`
+            `No Linear issue could be found matching the branch name ${branchName} in the authenticated workspace.`
           );
         }
       } catch (error) {
