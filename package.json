@@ -1,11 +1,11 @@
 {
   "name": "linear-open-issue",
   "displayName": "Linear Open Issue",
-  "description": "Open the Linear issue that is currently being worked on based on the VCS branch name.",
+  "description": "Open the Linear issue that is currently being worked on based on the Git branch name.",
   "publisher": "linear",
   "author": "Linear Orbit, Inc",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "assets/128x128.png",
   "repository": {
     "type": "git",
